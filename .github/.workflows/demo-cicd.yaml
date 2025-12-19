@@ -1,0 +1,30 @@
+name: Demo CI/CD
+
+# Workflow dijalankan setiap ada push ke branch main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Nama job
+  demo-deploy:
+    # Pakai self-hosted runner (jalan di lokal/mesin sendiri)
+    runs-on: self-hosted
+
+    steps:
+      - name: 1. Ambil perubahan kode
+        uses: actions/checkout@v3
+
+      - name: 2. Simulasi install dependency
+        run: echo "Sedang menginstall library yang dibutuhkan ..."
+
+      # Buat bikin file
+      - name: 3. Membuat surat
+        shell: cmd
+        run: |
+          echo Halo! Aku Liz dari Lumiere. > surat_dari_liz.txt
+          echo Aku bikin surat ini otomatis lho, dibikinnya pas tanggal %DATE% jam %TIME% >> surat_dari_liz.txt
+
+      - name: 4. Selesai
+        run: echo "Deployment Berhasil!"
