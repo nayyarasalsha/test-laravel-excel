@@ -9,18 +9,21 @@ jobs:
   demo-deploy:
     runs-on: [self-hosted, Windows, X64]
 
+    defaults:
+      run:
+        shell: cmd
+
     steps:
       - name: 1. Ambil perubahan kode
         uses: actions/checkout@v4
 
       - name: 2. Simulasi install dependency
-        run: echo "Sedang menginstall library yang dibutuhkan ..."
+        run: echo Sedang menginstall library yang dibutuhkan ...
 
       - name: 3. Membuat surat
-        shell: cmd
         run: |
           echo Halo! Aku Liz dari Lumiere. > surat_dari_liz.txt
           echo Aku bikin surat ini otomatis lho, dibikinnya pas tanggal %DATE% jam %TIME% >> surat_dari_liz.txt
 
       - name: 4. Selesai
-        run: echo "Deployment Berhasil!"
+        run: echo Deployment Berhasil!
